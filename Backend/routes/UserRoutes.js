@@ -71,7 +71,6 @@ userRouter.post("/register", async (req, res) => {
     const { name, password } = req.body
     try {
         bcrypt.hash(password, 5, async function (err, hash) {
-            // Store hash in your password DB.
             if (err) {
                 res.send({ msg: "something went wrong", err: err.message })
             }
@@ -84,7 +83,7 @@ userRouter.post("/register", async (req, res) => {
                     res.cookie("token",token,{sameSite:'none',   secure:true}).status(201).send({    
                     id:createdUser._id,
                     name
-                })                  
+                })                   
                 })
                 
             }
